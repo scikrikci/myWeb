@@ -1,10 +1,11 @@
 import {createRouter, createWebHistory} from 'vue-router'
 // import HomeView from '../views/HomeView.vue'
 import SkillView from '../views/SkillView.vue'
-import ThreeDView from '../views/ThreeDView.vue'
-import TwoView from '../views/TwoDView.vue'
+import ArtView from '../views/ArtView.vue'
 import ContactView from '../views/ContactView.vue'
 import ResumeView from '../views/ResumeView.vue'
+import AboutMeView from '@/views/AboutMeView.vue'
+import NotFound from '@/views/NotFoundView.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,7 +13,12 @@ const router = createRouter({
         {
             path: '/',
             name: 'home',
-            component: SkillView
+            component: AboutMeView
+        },
+        {
+            path: '/about-me',
+            name: 'aboutMe',
+            component: AboutMeView
         },
         {
             path: '/skill',
@@ -20,14 +26,9 @@ const router = createRouter({
             component: SkillView
         },
         {
-            path: '/3d',
-            name: '3d',
-            component: ThreeDView
-        },
-        {
-            path: '/2d',
-            name: '2d',
-            component: TwoView
+            path: '/art',
+            name: 'art',
+            component: ArtView
         },
         {
             path: '/resume',
@@ -38,7 +39,13 @@ const router = createRouter({
             path: '/contact',
             name: 'contact',
             component: ContactView
+        },
+        {
+            path: '/:pathMatch(.*)*',
+            name: 'notfound',
+            component: NotFound
         }
+
     ]
 })
 
