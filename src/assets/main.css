@@ -1,12 +1,2 @@
 @import './base.css';
 @import './reset.css';
-
-#app {
-    height: auto;
-    min-height: 100vh;
-    padding: 5rem;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    gap: 5rem;
-}

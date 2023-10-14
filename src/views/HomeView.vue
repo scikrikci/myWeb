@@ -1,86 +1,195 @@
 <script setup>
-import {RouterLink, RouterView} from "vue-router";
-import Logo from '../components/PageLogo.vue'
-// import {ref} from "vue";
-// import Footer from '../components/Footer.vue'
-// const isActiveColor = ref(false);
+import Logo from '@/components/PageLogo.vue'
+import { ref } from 'vue';
 
+const buttons = ref([
+  { title: 'Projects', link: '/projects' },
+  { title: 'About', link: '/about' },
+  { title: 'Skills', link: 'skills' },
+]);
+const isHovered = ref([false, false, false]);
+
+function startAnimation(index) {
+  isHovered.value = isHovered.value.map((_, i) => i === index);
+}
+
+function stopAnimation() {
+  isHovered.value = isHovered.value.map(() => false);
+}
 </script>
 
 <template>
-  <RouterLink to="/">
-    <Logo/>
-  </RouterLink>
-  <nav>
-    <div class="box">
-      <RouterLink to="/art">Art</RouterLink>
+  <div class="home">
+    <div class="logo">
+      <Logo />
     </div>
-
-    <div class="box">
-      <RouterLink to="/skill">Skill</RouterLink>
-      <RouterLink to="/about-me">Me</RouterLink>
-      <RouterLink to="/resume">Resume</RouterLink>
+    <div class="cover-animation">
+      <div class="text">Hello 👋 I'm</div>
+      <section class="animation">
+        <div class="box">
+          Huseyin Samet Cikrikci
+        </div>
+        <div class="box">
+          Developer
+        </div>
+        <div class="box">
+          2D ^ 3d Artist
+        </div>
+      </section>
     </div>
-
-    <div class="box">
-      <RouterLink to="/contact">Concats</RouterLink>
+    <div class="button-container">
+      <div class="button-wrapper" v-for="(button, index) in buttons" :key="index">
+        <RouterLink :to="{ path: button.link }" class="button" @mouseover="startAnimation(index)"
+          @mouseout="stopAnimation(index)">{{ button.title }}</RouterLink>
+      </div>
     </div>
-  </nav>
-  <RouterView/>
-  <!--    <Footer/>-->
+  </div>
 </template>
 
 <style scoped>
-nav {
+.home {
   width: 100%;
-  height: auto;
+  height: calc(100vh - 3rem);
+  padding: 4rem 0 0 0;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 5rem;
+  margin-bottom: 10rem;
+  font-family: 'Lilita One', sans-serif;
+}
+
+
+
+.button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 7rem;
+}
+
+.button-wrapper {
+  width: 11rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7rem;
+}
+
+.button {
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  color: white;
+  border: none;
+  border-radius: .6rem;
+  border: 2px solid white;
+  background-color: black;
+  padding: 1rem 0;
+  font-size: 1.3rem;
+  transition: .3s ease-in-out;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+  font-family: 'Lilita One', sans-serif;
+}
+
+.button:hover {
+  background-color: rgb(255, 255, 255);
+  color: black;
+}
+
+.cover-animation {
+  font-size: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  margin-bottom: 2rem;
 }
 
-nav .box {
-  width: 100%;
-  height: 4rem;
+.animation {
+  height: 3.2rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: .5rem;
+  overflow: hidden;
 }
 
-nav .box:nth-last-of-type(1) a {
-  height: auto;
-}
-
-nav .box a {
-  width: 7rem;
-  height: 4rem;
+.animation .box {
+  width: auto;
+  height: 5rem;
+  display: flex;
   text-align: center;
-
-  display: flex;
-  align-items: center;
   justify-content: center;
-
-  text-decoration: none;
-  color: white;
-  font-size: 1.2rem;
-  padding: .4rem 1.2rem;
-  border: 1px solid #444444;
-  border-radius: 1rem;
-  transition: all .2s ease-in-out;
-  font-style: oblique;
-  font-weight: bolder;
-}
-
-nav .box a:hover {
-  border: 1px solid #ffffff;
-  background: lemonchiffon;
-  color: chocolate;
-  transform: scale(1.2);
+  align-items: center;
+  padding: 0 5rem;
+  background-color: white;
+  border-radius: .5rem;
+  color: rgb(255, 255, 255);
+  display: inline-block;
 }
 
 
-</style>
+.animation div {
+  animation: box-animation 8s infinite;
+}
+
+@keyframes box-animation {
+  0% {
+    transform: translateY(0rem);
+  }
+
+  10% {
+    transform: translateY(0rem);
+  }
+
+  20% {
+    transform: translateY(3.7rem);
+  }
+
+  30% {
+    transform: translateY(3.7rem);
+  }
+
+  40% {
+    transform: translateY(0);
+  }
+
+  60% {
+    transform: translateY(0);
+  }
+
+  70% {
+    transform: translateY(-3.7rem);
+  }
+
+  80% {
+    transform: translateY(-3.7rem);
+  }
+
+  90% {
+    margin-top: 0;
+  }
+
+  100% {
+    margin-top: 0;
+  }
+}
+
+.animation .box:nth-child(1) {
+  background-color: #20A7D8;
+}
+
+.animation .box:nth-child(2) {
+  background-color: #D8204C;
+}
+
+.animation .box:nth-child(3) {
+  background-color: #EB872A;
+}</style>

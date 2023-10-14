@@ -1,10 +1,8 @@
-import {createRouter, createWebHistory} from 'vue-router'
-// import HomeView from '../views/HomeView.vue'
-import SkillView from '../views/SkillView.vue'
-import ArtView from '../views/ArtView.vue'
-import ContactView from '../views/ContactView.vue'
-import ResumeView from '../views/ResumeView.vue'
-import AboutMeView from '@/views/AboutMeView.vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from '@/views/HomeView.vue'
+import ProjectsView from '@/views/ProjectsView.vue'
+import AboutView from '@/views/AboutView.vue'
+import SkillsView from '@/views/SkillsView.vue'
 import NotFound from '@/views/NotFoundView.vue'
 
 const router = createRouter({
@@ -13,33 +11,24 @@ const router = createRouter({
         {
             path: '/',
             name: 'home',
-            component: AboutMeView
+            component: HomeView
         },
         {
-            path: '/about-me',
-            name: 'aboutMe',
-            component: AboutMeView
+            path: '/projects',
+            name:'projects',
+            component: ProjectsView
         },
         {
-            path: '/skill',
-            name: 'skill',
-            component: SkillView
+            path: '/skills',
+            name:'skills',
+            component: SkillsView
         },
         {
-            path: '/art',
-            name: 'art',
-            component: ArtView
+            path: '/about',
+            name:'about',
+            component: AboutView
         },
-        {
-            path: '/resume',
-            name: 'resume',
-            component: ResumeView
-        },
-        {
-            path: '/contact',
-            name: 'contact',
-            component: ContactView
-        },
+        
         {
             path: '/:pathMatch(.*)*',
             name: 'notfound',
@@ -48,5 +37,10 @@ const router = createRouter({
 
     ]
 })
+
+export const sharedData = {
+    value: null,
+};
+
 
 export default router

@@ -1,11 +1,11 @@
 <script setup>
+
 </script>
 
 <template>
-  <div class="main-container">
+  <div class="skills">
+    skills
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
