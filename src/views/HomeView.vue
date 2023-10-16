@@ -1,5 +1,7 @@
 <script setup>
 import Logo from '@/components/PageLogo.vue'
+import Dots from '@/components/Dots.vue'
+
 import { ref } from 'vue';
 
 const buttons = ref([
@@ -16,10 +18,19 @@ function startAnimation(index) {
 function stopAnimation() {
   isHovered.value = isHovered.value.map(() => false);
 }
+
 </script>
 
 <template>
   <div class="home">
+    <div class="dot-ctn">
+      <Dots class="dot-one"/>
+      <Dots class="dot-two"/>
+      <Dots class="dot-three"/>
+      <Dots class="dot-four"/>
+      <Dots class="dot-five"/>
+    </div>
+
     <div class="logo">
       <Logo />
     </div>
@@ -39,7 +50,7 @@ function stopAnimation() {
     </div>
     <div class="button-container">
       <div class="button-wrapper" v-for="(button, index) in buttons" :key="index">
-        <RouterLink :to="{ path: button.link }" class="button" @mouseover="startAnimation(index)"
+        <RouterLink :to="{ path: button.link}" class="button" @mouseover="startAnimation(index)"
           @mouseout="stopAnimation(index)">{{ button.title }}</RouterLink>
       </div>
     </div>
@@ -47,20 +58,44 @@ function stopAnimation() {
 </template>
 
 <style scoped>
+
+.dot {
+  width: 64px;
+  height: 64px;
+}
+.dot-one {
+  top: 3.4rem;
+  left: 33rem;
+}
+.dot-two {
+  top: 10rem;
+  right: 15rem;
+}
+.dot-three {
+  top: 25rem;
+  left: 18rem;
+}
+.dot-four {
+  bottom: 12rem;
+  left: 36rem;
+}
+.dot-five {
+  bottom: 23rem;
+  right: 30rem;
+}
+
+
 .home {
   width: 100%;
   height: calc(100vh - 3rem);
-  padding: 4rem 0 0 0;
-
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   gap: 5rem;
-  margin-bottom: 10rem;
   font-family: 'Lilita One', sans-serif;
+  position: relative;
 }
-
 
 
 .button-container {
